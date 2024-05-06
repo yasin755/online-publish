@@ -1,4 +1,5 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
@@ -15,6 +16,7 @@ export default function DaterangePicker() {
                 format="DD MMMM YYYY"
                 slots={{ field: SingleInputDateRangeField }}
                 name="allowedRange"
+                defaultValue={[dayjs('2024-05-01'), dayjs('2024-05-05')]}
                 />
             </DemoContainer>
         </LocalizationProvider>

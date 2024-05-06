@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useState, useEffect} from "react";
 import Stack from "@mui/material/Stack";
 import { LineChart } from "@mui/x-charts/LineChart";
 import Box from '@mui/material/Box';
@@ -8,17 +8,49 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 
-const data = [4000, 3000, 2000, null, 1890, 2390, 3490];
-const xData = [
-  "March 2",
-  "Page B",
-  "Page C",
-  "Page D",
-  "Page E",
-  "Page F",
-  "Page G",
-];
-export default function Chart() {
+
+export default function Chart({filter}) {
+ 
+  const [data, setYData] = useState([]);
+  const [xData, setXData] = useState([]);
+
+  useEffect(() => {
+    //setData
+    refreshChartData(filter);
+  }, [filter]);
+
+  const refreshChartData = (filter) => {
+    if(filter === 'Weekly') {
+      weeklyDataHandler();
+    } else {
+      dailyDataHandler();
+    }
+  }
+
+  const dailyDataHandler = () => {
+    const yAxisData = [12, 5, 10, 15, 5, 18];
+    const xAxisData = [
+      "May 1",
+      "May 2",
+      "May 3",
+      "May 4",
+      "May 5",
+      "May 6"
+    ];
+    setXData(xAxisData);
+    setYData(yAxisData);
+  }
+
+  const weeklyDataHandler = () => {
+    const yAxisData = [14, 20];
+    const xAxisWeeklyData = [
+      "May 1st week",
+      "May 2nd week"
+    ];
+    setXData(xAxisWeeklyData);
+    setYData(yAxisData);
+  }
+
   return (
     <div className="chart-section-ct">
     <Stack direction="row" spacing={2} alignItems='center' sx={{marginBottom: '15px'}}>
@@ -45,7 +77,7 @@ export default function Chart() {
       <Stack sx={{ width: "100%" }}>
         <LineChart
           xAxis={[{ data: xData, scaleType: "point" }]}
-          series={[{ data, connectNulls: true, area: true }]}
+          series={[{ data, connectNulls: true, area: true, color: '#4e79a7' }]}
           height={200}
           margin={{ top: 10, bottom: 20 }}
         />

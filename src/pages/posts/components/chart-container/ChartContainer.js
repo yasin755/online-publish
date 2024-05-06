@@ -1,22 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import DaterangePicker from '../date-range-picker/DaterangePicker';
 import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faRotateRight} from '@fortawesome/free-solid-svg-icons/faRotateRight';
 import DataAnalytics from '../data-analytics/DataAnalytics';
 import Chart from './Chart';
 import PostsTable from '../posts-table/PostsTable';
 
-const buttons = [
-  <Button key="hourly">Hourly</Button>,
-  <Button key="daily">Daily</Button>,
-  <Button key="weekly">Weekly</Button>,
-  <Button key="monthly">Monthly</Button>,
-];
+const btnGrps = [
+  {id: 1, name: 'Hourly'},
+  {id: 1, name: 'Daily'},
+  {id: 1, name: 'Weekly'},
+  {id: 1, name: 'Monthly'}
+]
 
 export default function ChartContainer(){
+
+  const [selectedFilter, setSelectedFilter] = useState('Daily');
+
+  const selectfilterhandler = (btn) => {
+    setSelectedFilter(btn);
+  }
+
     return (
       <div className="">
       <div className='d-flex'>
@@ -35,7 +43,11 @@ export default function ChartContainer(){
             variant="outlined"
             aria-label="Small button group"
           >
-            {buttons}
+            {btnGrps && btnGrps.map((btn) => {
+              return(
+                <Button key={btn.id} className={selectedFilter === btn.name? 'active': null} onClick={() => selectfilterhandler(btn.name)}>{btn.name}</Button>
+              )
+            })}
           </ButtonGroup>
         </Box>
         <DaterangePicker />
@@ -48,9 +60,12 @@ export default function ChartContainer(){
             Filter
           </Button>
         </Box>
+        <div className="refresh-btn">
+          <Button startIcon={<FontAwesomeIcon icon={faRotateRight} />}>Refresh</Button>
+        </div>
         </div>
         <div className='d-flex'>
-          <Chart />
+          <Chart filter={selectedFilter} />
         </div>
         <DataAnalytics />
         <PostsTable />

@@ -68,7 +68,28 @@ button {
   font-weight: 400;
 }
 .css-s20sh7>* {margin-left: 0px !important;}
-
+.css-edsu1d-MuiButtonGroup-root .MuiButtonGroup-lastButton, .css-edsu1d-MuiButtonGroup-root .MuiButtonGroup-middleButton{
+  margin-left: 0px !important;
+  border-radius: 2px;
+}
+.css-edsu1d-MuiButtonGroup-root .MuiButtonGroup-firstButton:hover, .css-edsu1d-MuiButtonGroup-root .MuiButtonGroup-middleButton:hover{
+  border-right-color: #1976d2 !important;
+}
+button.active {
+  border-color: #1976d2;
+  color: #1976d2;
+  background-color: #eee;
+  border-radius: 2px;
+  font-weight: 500;
+  border-right-color: #1976d2 !important;
+}
+.refresh-btn {
+  margin-left: auto;
+  padding-top: 6px;
+}
+.refresh-btn button {
+  font-size: 14px;
+}
 /**************main-content styles***************/
 main {
   padding-top: 2px;
@@ -85,7 +106,7 @@ main {
 }
 
 .css-nby9nv-MuiStack-root>.MuiTextField-root, .css-nby9nv-MuiStack-root>.MuiPickersTextField-root {
-  min-width: 265px !important;
+  min-width: 212px !important;
   background-color: #fff;
 }
 
@@ -114,13 +135,15 @@ main {
 }
 .number-ct{
   margin-top: 2px;
+  color: #1976d2;
 }
 .number-ct .num-postfix{
-  padding-left: 3px;
+  padding-left: 2px;
   font-size: 12px;
   vertical-align: super;
   display: inline-block;
-  margin-top: 3px;
+  margin-top: 4px;
+  color: #000;
 }
 .number-ct .num{
   color: #1976d2;
